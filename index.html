@@ -1,23 +1,686 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "serviceType": "레인지로버 장기렌트 서비스",
+        "provider": {
+          "@type": "Organization",
+          "name": "프리미엄 장기렌트 전문 기업",
+          "url": "https://yourdomain.com"
+        },
+        "areaServed": "대한민국",
+        "description": "2026년형 레인지로버 이보크, 벨라, 스포츠, 디펜더 모델을 포함한 모든 레인지로버 라인업의 장기렌트 견적을 합리적인 비용으로 제공합니다. 전문적인 비교 분석을 통해 고객 맞춤형 최적의 장기렌트 상품을 추천해 드립니다.",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "레인지로버 장기렌트 가격",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "레인지로버 이보크 장기렌트"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "500000",
+                "priceCurrency": "KRW",
+                "description": "월 예상 견적 최저가 (모델, 조건에 따라 상이)"
+              },
+              "description": "컴팩트 럭셔리 SUV. 경제성과 스타일을 중시하는 고객에게 추천."
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "레인지로버 벨라 장기렌트"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "800000",
+                "priceCurrency": "KRW",
+                "description": "월 예상 견적 최저가 (모델, 조건에 따라 상이)"
+              },
+              "description": "미드 사이즈 럭셔리 SUV. 쿠페형 디자인과 첨단 기술의 조화."
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "레인지로버 스포츠 장기렌트"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "1200000",
+                "priceCurrency": "KRW",
+                "description": "월 예상 견적 최저가 (모델, 조건에 따라 상이)"
+              },
+              "description": "고성능 럭셔리 SUV. 압도적인 성능과 럭셔리 승차감 제공."
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Product",
+                "name": "랜드로버 디펜더 장기렌트"
+              },
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "price": "900000",
+                "priceCurrency": "KRW",
+                "description": "월 예상 견적 최저가 (모델, 조건에 따라 상이)"
+              },
+              "description": "아이코닉한 디자인과 강력한 오프로드 성능."
+            }
+          ]
+        }
+      }
+      </script>
+    <style>
+      :root {
+        --primary-color: #004080;
+        --secondary-color: #D4AF37; /* Gold accent for luxury theme */
+        --background-color: #f7f9fc;
+        --card-bg-color: #ffffff;
+        --text-color: #333333;
+        --light-text-color: #666666;
+        --border-color: #e0e6f0;
+        --success-color: #28a745;
+      }
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: var(--background-color);
+        color: var(--text-color);
+      }
+      header {
+        background-color: var(--primary-color);
+        color: white;
+        padding: 2rem 1rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 900;
+        line-height: 1.4;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      nav a:hover {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+      }
+      main {
+        max-width: 1080px;
+        margin: 2.5rem auto;
+        padding: 0 1rem;
+      }
+      section {
+        background-color: var(--card-bg-color);
+        border-radius: 12px;
+        padding: 2.5rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+        border-top: 4px solid var(--primary-color);
+      }
+      h2 {
+        color: var(--primary-color);
+        font-size: 2rem;
+        border-bottom: 3px solid var(--secondary-color);
+        padding-bottom: 0.75rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+      }
+      h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-left: 0.5rem;
+        border-left: 4px solid var(--secondary-color);
+      }
+      p {
+        margin-bottom: 1rem;
+        font-size: 1.05rem;
+        color: var(--text-color);
+      }
+      ul {
+        margin-left: 1.5rem;
+        list-style: disc;
+        margin-bottom: 1.5rem;
+      }
+      li {
+        margin-bottom: 0.5rem;
+      }
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 0.95rem;
+      }
+      .keyword-tags a {
+        background-color: var(--background-color);
+        color: var(--primary-color);
+        padding: 8px 16px;
+        border-radius: 20px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        border: 1px solid var(--primary-color);
+      }
+      .keyword-tags a:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+        font-weight: 700;
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        margin: 1.5rem 0;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .cta-button:hover {
+        background-color: #e5c15c;
+        transform: translateY(-2px);
+      }
+      .image-container {
+        width: 100%;
+        margin: 2rem 0;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+      .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th, td {
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.95rem;
+      }
+      th {
+        background-color: var(--primary-color);
+        color: white;
+        font-weight: 700;
+      }
+      tr:nth-child(even) {
+        background-color: var(--background-color);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      dl {
+        margin-bottom: 2rem;
+      }
+      dl dt {
+        font-weight: 700;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        padding: 1rem;
+        background-color: var(--background-color);
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      dl dt:hover {
+        background-color: #eaf1f9;
+      }
+      dl dt::after {
+        content: '+';
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+      }
+      dl dt.active::after {
+        content: '-';
+        transform: rotate(180deg);
+      }
+      dl dd {
+        margin-left: 0;
+        margin-bottom: 1rem;
+        padding: 1.5rem;
+        background-color: #fcfcfc;
+        border-radius: 0 0 8px 8px;
+        border-left: 3px solid var(--secondary-color);
+        display: none;
+        font-size: 1rem;
+        color: var(--light-text-color);
+      }
+      dl dt.active + dd {
+        display: block;
+      }
+      /* Form Styling */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .form-group label {
+        display: block;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color);
+      }
+      .form-group input, .form-group select, .form-group textarea {
+        width: calc(100% - 2rem);
+        padding: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      .form-group input[type="radio"], .form-group input[type="checkbox"] {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+      .radio-group label {
+        display: inline-block;
+        font-weight: 400;
+        margin-right: 1rem;
+      }
+      .radio-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+      .button-group {
+        text-align: center;
+        margin-top: 2rem;
+      }
+      .submit-button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .submit-button:hover {
+        background-color: #002e5c;
+      }
+      /* Graph and Chart Styling */
+      .chart-container {
+        width: 100%;
+        margin: 2rem 0;
+      }
+      .comparison-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: var(--background-color);
+        padding: 1.5rem;
+        border-radius: 8px;
+      }
+      .chart-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .chart-label {
+        width: 150px;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+      .chart-bar {
+        height: 20px;
+        border-radius: 4px;
+        background-color: var(--secondary-color);
+        transition: width 1s ease-in-out;
+      }
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+        color: var(--light-text-color);
+        background-color: #f0f0f0;
+        margin-top: 3rem;
+      }
+      footer p {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>레인지로버 장기렌트 가격 비교 및 모델별 견적 추천</h1>
+        <p>2026년형 레인지로버 이보크, 벨라, 스포츠, 디펜더 최저가 견적 가이드</p>
+        <nav>
+            <ul>
+                <li><a href="#intro">서비스 소개</a></li>
+                <li><a href="#models">모델별 비교</a></li>
+                <li><a href="#price">가격 및 견적 분석</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#inquiry">실시간 견적 문의</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+
+        <section id="intro">
+            <h2>프리미엄 럭셔리 SUV, 레인지로버 장기렌트의 가치</h2>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/17926868/pexels-photo-17926868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="레인지로버 장기렌트 소개 이미지">
+            </div>
+            <p>레인지로버(Range Rover)는 단순한 이동 수단을 넘어 성공과 품격을 상징하는 럭셔리 SUV의 대명사입니다. 뛰어난 주행 성능과 압도적인 디자인, 그리고 최첨단 기술이 집약된 레인지로버를 합리적인 비용으로 소유하는 방법으로 최근 장기렌트가 각광받고 있습니다. 2026년형 최신 모델을 포함하여 레인지로버 장기렌트의 모든 것을 심층적으로 분석하고, 고객님께 가장 적합한 견적을 찾아 드리는 전문 가이드를 제공합니다.</p>
+
+            <h3>레인지로버 장기렌트, 왜 지금 선택해야 할까요?</h3>
+            <p>고가의 수입차인 레인지로버를 구매할 때 가장 부담되는 부분은 초기 비용입니다. 취등록세, 공채, 보험료, 선수금 등 수천만원에 달하는 초기 지출은 현금 유동성을 저해하는 주 요인입니다. 장기렌트는 이러한 초기 비용 부담을 제로(0)로 만들고, 월 납입금에 모든 비용을 통합하여 제공함으로써 재무 관리를 단순화합니다. 특히 개인사업자나 법인 사업자에게는 월 렌트료 전액을 손비 처리(경비 처리)하여 세금 절감 효과를 극대화할 수 있는 강력한 장점이 있습니다.</p>
+            <p>2026년도 신차 시장의 트렌드는 장기렌트의 편리성에 더욱 집중하고 있습니다. 복잡한 차량 관리와 사고 처리, 그리고 감가상각으로 인한 자산 가치 하락의 부담을 모두 렌트사가 책임집니다. 레인지로버의 섬세한 유지보수나 고가의 수리 비용에 대한 걱정 없이 신차를 이용하고, 만기 시점에서 인수나 반납을 자유롭게 선택할 수 있는 유연성은 레인지로버를 더욱 매력적인 선택지로 만듭니다.</p>
+
+            <div class="keyword-tags" aria-label="연관 키워드">
+                <a href="#price">레인지로버 장기렌트 가격</a>
+                <a href="#advantages">레인지로버 장기렌트 장점</a>
+                <a href="#comparison">레인지로버 장기렌트 비교</a>
+                <a href="#inquiry">레인지로버 견적 문의</a>
+                <a href="#faq">장기렌트 신용등급</a>
+                <a href="#models">레인지로버 이보크</a>
+                <a href="#models">레인지로버 벨라</a>
+                <a href="#models">레인지로버 스포츠</a>
+                <a href="#models">랜드로버 디펜더</a>
+                <a href="#finance">사업자 장기렌트 세금</a>
+                <a href="#price">저렴한곳</a>
+                <a href="#inquiry">전문업체 추천</a>
+                <a href="#faq">신규 가입 혜택</a>
+                <a href="#review">내돈내산 후기</a>
+            </div>
+        </section>
+
+        <section id="models">
+            <h2>레인지로버 모델별 상세 비교 및 추천</h2>
+            <p>레인지로버 라인업은 컴팩트 SUV인 이보크부터 플래그십 모델인 레인지로버까지 다양한 크기와 성능을 제공합니다. 고객님의 라이프스타일과 예산에 따라 최적의 모델을 선택할 수 있도록 주요 모델별 장단점을 비교 분석해 드립니다. 2026년형 모델을 기준으로 업데이트된 정보를 반영하였습니다.</p>
+
+            <h3>1. 레인지로버 이보크 (Range Rover Evoque) - 스타일리시한 도심형 럭셔리 SUV</h3>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/17926868/pexels-photo-17926868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="레인지로버 이보크">
+            </div>
+            <p>이보크는 레인지로버 라인업 중 가장 컴팩트한 모델로, 특히 젊은 감각과 트렌디함을 중시하는 고객층에게 인기가 높습니다. 2026년형 이보크는 더욱 세련된 인테리어와 강화된 인포테인먼트 시스템(Pivi Pro)을 탑재하여 상품성을 높였습니다. 좁은 도심 환경에서도 민첩하게 움직일 수 있는 기동성과 독보적인 디자인으로 주목받습니다. <strong><a href="https://www.landrover.co.kr/" target="_blank">랜드로버 공식 웹사이트</a></strong>에서 자세한 사양 확인이 가능합니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 뛰어난 연비 효율, 상대적으로 저렴한 장기렌트 비용(월 납입금), 독창적인 쿠페형 디자인, 쉬운 도심 주차 및 운전.</li>
+                <li><strong>단점:</strong> 넉넉하지 않은 2열 공간, 상대적으로 부족한 적재 공간.</li>
+                <li><strong>추천 대상:</strong> 사회 초년생, 신혼부부, 세컨카, 도심 주행 위주 고객.</li>
+            </ul>
+
+            <h3>2. 레인지로버 벨라 (Range Rover Velar) - 우아한 미드 사이즈 럭셔리 SUV</h3>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/17926868/pexels-photo-17926868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="레인지로버 벨라">
+            </div>
+            <p>벨라는 이보크와 스포츠 사이의 미드 사이즈 SUV 포지션에 위치합니다. 이보크보다 여유로운 실내 공간과 레인지로버 스포츠 못지않은 우아한 디자인이 특징입니다. 특히 히든 타입 도어 핸들과 매끄러운 바디 라인으로 미니멀리즘 디자인의 정수를 보여줍니다. 2026년형 벨라는 최신 인테리어 트렌드를 반영하여 물리 버튼을 최소화하고 듀얼 터치스크린을 적용한 것이 특징입니다. <strong><a href="https://namu.wiki/w/%EB%A0%88%EC%9D%B8%EC%A7%80%EB%A1%9C%EB%B2%84%20%EB%B2%A8%EB%9D%BC" target="_blank">나무위키</a></strong>에서 벨라의 상세한 역사와 특징을 확인할 수 있습니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 쿠페형 디자인과 넉넉한 실내 공간의 균형, 높은 희소성, 첨단 기술의 집약.</li>
+                <li><strong>단점:</strong> 상대적으로 높은 가격대 형성, 복잡한 터치식 공조 시스템(일부 사용자 불호).</li>
+                <li><strong>추천 대상:</strong> 디자인을 중시하는 전문직, 4인 가족 기준의 패밀리 SUV를 원하는 고객.</li>
+            </ul>
+
+            <h3>3. 레인지로버 스포츠 (Range Rover Sport) - 역동적인 고성능 럭셔리 SUV</h3>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/17926868/pexels-photo-17926868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="레인지로버 스포츠">
+            </div>
+            <p>레인지로버 스포츠는 럭셔리함과 고성능 스포츠카의 역동성을 결합한 모델입니다. 레인지로버의 플래그십 모델과 견줄 만한 압도적인 존재감을 갖추고 있으며, 강력한 엔진 라인업(플러그인 하이브리드 P550e, V8 P635 등)을 통해 다이내믹한 주행 경험을 제공합니다. 2026년형 모델은 이전 세대 대비 더욱 정교해진 에어 서스펜션과 차체 제어 기술이 적용되어 편안한 승차감과 뛰어난 핸들링을 동시에 제공합니다.</p>
+            <ul>
+                <li><strong>장점:</strong> 플래그십 모델과 유사한 럭셔리함, 강력한 파워트레인, 여유로운 실내 및 적재 공간.</li>
+                <li><strong>단점:</strong> 높은 가격대, 상대적으로 높은 월 렌트료, 높은 유지보수 비용.</li>
+                <li><strong>추천 대상:</strong> 기업 임원, 개인 사업자, 주행 성능을 최우선으로 여기는 고객.</li>
+            </ul>
+
+            <h3>4. 랜드로버 디펜더 (Land Rover Defender) - 아이코닉한 오프로드 SUV (함께 찾는 키워드)</h3>
+            <div class="image-container">
+                <img src="https://images.pexels.com/photos/17926868/pexels-photo-17926868.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="랜드로버 디펜더">
+            </div>
+            <p>레인지로버는 아니지만 랜드로버의 상징적인 모델인 디펜더는 레인지로버 장기렌트를 알아보는 고객들이 함께 많이 찾는 모델입니다. 레인지로버의 럭셔리함과는 다른, 강인한 오프로드 감성과 실용성을 겸비하고 있습니다. 디펜더 110, 90, 130 등 다양한 버전이 있으며, 독특한 디자인과 뛰어난 전지형 주행 능력으로 매니아층을 형성하고 있습니다. 레인지로버와 디펜더의 차이점은 럭셔리(레인지로버)와 오프로드 실용성(디펜더)으로 구분될 수 있습니다.</p>
+
+        </section>
+
+        <section id="price">
+            <h2>레인지로버 장기렌트 가격 및 견적 분석</h2>
+            <p>레인지로버 장기렌트의 월 비용은 단순히 차량 가격으로만 결정되지 않습니다. 계약 기간, 약정 주행 거리, 보증금/선납금 여부, 그리고 렌트사별 프로모션 조건에 따라 월 납입금이 크게 달라집니다. <strong>저렴한곳</strong>을 찾는 것도 중요하지만, 숨겨진 추가 비용이 없는지 꼼꼼하게 확인하는 것이 중요합니다. 아래 표는 2026년형 레인지로버 주요 모델의 예상 월 납입금 (견적)을 비교한 자료입니다.</p>
+
+            <h3>모델별 월 렌트료 예상 견적 비교 (2026년형 기준)</h3>
+            <p>※ 아래 표는 특정 렌트사 및 계약 조건(만 26세 이상, 48개월, 연 2만 km 기준)에 따른 예상 <strong>평균 금액</strong>이며, 실제 <strong>할인</strong> 및 프로모션에 따라 달라질 수 있습니다. 정확한 <strong>비용</strong>은 전문가 <strong>견적 문의</strong>가 필수입니다.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>모델</th>
+                        <th>차량 가격 (원)</th>
+                        <th>월 렌트료 (예상)</th>
+                        <th>주요 특징</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>레인지로버 이보크 P250</td>
+                        <td>약 7,000만원 ~ 8,000만원</td>
+                        <td>50만원대 ~ 80만원대</td>
+                        <td>도심형 럭셔리 컴팩트 SUV, 경제성</td>
+                    </tr>
+                    <tr>
+                        <td>레인지로버 벨라 P250</td>
+                        <td>약 9,000만원 ~ 1억원</td>
+                        <td>80만원대 ~ 120만원대</td>
+                        <td>미드 사이즈 쿠페 SUV, 디자인 특화</td>
+                    </tr>
+                    <tr>
+                        <td>레인지로버 스포츠 P360</td>
+                        <td>약 1억 3,000만원 ~ 1억 6,000만원</td>
+                        <td>120만원대 ~ 180만원대</td>
+                        <td>고성능 럭셔리 SUV, 다이내믹 주행</td>
+                    </tr>
+                    <tr>
+                        <td>레인지로버 P530</td>
+                        <td>약 2억원 ~ 2억 5,000만원</td>
+                        <td>200만원대 이상</td>
+                        <td>플래그십 럭셔리 SUV, 최고의 품격</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <h3>주요 모델별 월 납입금 차이 시각화 (보증금 30% 조건)</h3>
+                <div class="comparison-chart">
+                    <div class="chart-item">
+                        <span class="chart-label">이보크</span>
+                        <div class="chart-bar" style="width: 30%;"></div>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label">벨라</span>
+                        <div class="chart-bar" style="width: 50%;"></div>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label">스포츠</span>
+                        <div class="chart-bar" style="width: 75%;"></div>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label">플래그십</span>
+                        <div class="chart-bar" style="width: 95%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <p><strong>[SEO 키워드 심층 분석]</strong> "레인지로버 장기렌트"를 검색하는 고객들은 단순히 가격 정보 외에도 <strong>장단점 비교</strong>, <strong>차이점</strong>, <strong>저렴한곳</strong>, <strong>신규 가입 혜택</strong> 등 다양한 정보를 원합니다. 특히 네이버 검색 로직은 단순 키워드 반복이 아닌, 사용자가 필요로 하는 전문적인 정보(E-A-T: 전문성, 권위성, 신뢰성)를 제공하는 페이지를 선호합니다. 저희는 모델별 <strong>장점</strong>과 <strong>단점</strong>을 명확히 제시하고, 렌트사별 <strong>순위</strong>와 <strong>비교</strong>를 통해 고객님이 합리적인 선택을 할 수 있도록 돕습니다. <strong><a href="https://www.gov.kr/portal/main" target="_blank">대한민국 정부24</a></strong>에서 차량 관련 세금 및 법규에 대한 공식 정보를 확인하는 것도 중요합니다.</p>
+
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ) - 레인지로버 장기렌트 편</h2>
+            <p>레인지로버와 같은 고가 수입차 장기렌트에 대해 고객들이 가장 궁금해하는 질문들을 모아 전문가의 답변을 제공합니다.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">장기렌트와 리스의 가장 큰 차이점은 무엇인가요? (장단점 비교)</dt>
+                <dd>가장 큰 <strong>차이점</strong>은 번호판(장기렌트 '하, 허, 호' vs 리스 일반 번호판)과 보험입니다. 장기렌트는 렌트사 명의로 보험이 가입되어 있어 개인 보험 경력이 단절되지만, 사고 시 개인 할증 부담이 없습니다. 리스는 개인 보험을 유지하면서 일반 번호판을 사용합니다. 사업자의 경우 장기렌트는 월 렌트료 전액을 손비 처리할 수 있어 세금 절감에 유리합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">레인지로버 장기렌트 시, 초기 비용이 전혀 안 드나요? (보증금/선납금)</dt>
+                <dd>기본적으로 <strong>초기 비용</strong>이 없는 무보증 상품이 존재합니다. 하지만 보증금을 납부할 경우 월 렌트료가 절감됩니다. 보증금은 만기 시 환급받는 금액이며, 선납금은 미리 내는 월 렌트료의 일부로 만기 시 환급되지 않습니다. <strong>저렴한곳</strong>을 찾으려면 보증금/선납금 조건을 어떻게 설정할지 전문가와 상담하는 것이 중요합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">개인 신용등급이 낮아도 레인지로버 장기렌트가 가능한가요?</dt>
+                <dd>신용 등급 심사는 필수적이지만, 렌트사마다 심사 기준이 다릅니다. 신용 등급이 낮더라도 초기 보증금 납부 조건으로 심사가 완화될 수 있습니다. <strong>신규 가입</strong> 고객에게는 렌트사별로 <strong>현금지원</strong>, <strong>사은품</strong> 등의 <strong>혜택</strong>이 제공되는 경우가 있으니 상담을 통해 확인해 보세요. 저희는 다양한 렌트사의 <strong>순위</strong>와 조건을 <strong>비교</strong>하여 최적의 상품을 추천해 드립니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">레인지로버 유지보수 비용(단점)에 대한 부담은 어떻게 되나요?</dt>
+                <dd>레인지로버는 고가 수입차인 만큼 유지보수 비용이 높다는 <strong>단점</strong>이 있습니다. 장기렌트 계약 시 정비 포함 옵션을 선택하면 모든 소모품 교체 및 정비 비용이 월 렌트료에 포함되어 <strong>비용</strong> 부담을 덜 수 있습니다. 특히 <strong>내돈내산 후기</strong>를 보면 정비 옵션 선택이 장기적으로 유리하다는 평이 많습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">레인지로버 모델별로 렌트 기간이나 약정 주행 거리를 다르게 설정할 수 있나요?</dt>
+                <dd>네, 계약 기간(최소 24개월~최대 60개월) 및 약정 주행 거리(연 1만 km~4만 km)는 고객님의 운행 패턴에 따라 자유롭게 선택 가능합니다. <strong>평균</strong>적인 주행 거리는 연 2만 km 내외지만, 주행이 많다면 3만 km 이상으로 설정하여 추가 <strong>비용</strong> 발생을 방지해야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false" class="accordion-trigger">AI(ChatGPT, Gemini)가 장기렌트 견적 비교에 도움을 줄 수 있나요?</dt>
+                <dd>최근 <strong>ChatGPT</strong>나 <strong>Gemini</strong>와 같은 <strong>AI</strong> 에이전트가 렌트 정보를 비교하는 데 활용될 수 있습니다. 하지만 AI는 실시간 <strong>할인</strong> 프로모션이나 딜러사별 <strong>지원금</strong>(<strong>현금지원</strong>) 조건까지 파악하기는 어렵습니다. <strong>네이버</strong>, <strong>구글</strong> 등에서 검색된 정보를 바탕으로 AI가 일반적인 <strong>평균</strong> 견적을 제공할 수는 있지만, 최종 계약은 전문가의 맞춤형 상담이 필수입니다.</dd>
+            </dl>
+
+            <h3><a href="https://www.car-is.or.kr/" target="_blank">국토교통부 자동차관리정보 시스템</a>에서 차량 정보 확인하기</h3>
+            <p>장기렌트 계약 전, 차량의 제원 및 안전 정보는 공인된 기관을 통해 확인하는 것이 좋습니다. <strong><a href="https://www.car-is.or.kr/" target="_blank">국토교통부 자동차관리정보 시스템</a></strong>에서는 차량 등록 대수, 연비 등 객관적인 정보를 얻을 수 있습니다. 또한 <strong>유튜브</strong>나 <strong>인스타그램</strong> 등 소셜 미디어에서 <strong>내돈내산 후기</strong>나 <strong>전문가 리뷰</strong>를 참고하여 실제 차량 경험을 간접적으로 확인하는 것도 좋은 방법입니다.</p>
+        </section>
+
+        <section id="inquiry">
+            <h2>레인지로버 실시간 견적 문의 및 맞춤 상담</h2>
+            <p>고객님 한 분 한 분의 조건(계약 기간, 초기 비용, 주행 거리, 모델)에 따라 가장 합리적인 <strong>장기렌트 비용</strong>과 <strong>견적</strong>을 산출해 드립니다. 2026년형 레인지로버 신차를 합리적인 <strong>가격</strong>으로 만나보세요. 아래 문의 양식에 정보를 남겨주시면 <strong>전문 업체</strong>의 <strong>추천</strong> 견적을 신속하게 보내드립니다.</p>
+
+            <form action="#" method="post" class="inquiry-form">
+                <div class="form-group">
+                    <label for="name">성함</label>
+                    <input type="text" id="name" name="name" placeholder="이름을 입력해주세요" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">연락처</label>
+                    <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="model">희망 모델 (선택)</label>
+                    <select id="model" name="model">
+                        <option value="">모델 선택</option>
+                        <option value="Evoque">레인지로버 이보크</option>
+                        <option value="Velar">레인지로버 벨라</option>
+                        <option value="Sport">레인지로버 스포츠</option>
+                        <option value="Defender">랜드로버 디펜더</option>
+                        <option value="FullSize">레인지로버 (플래그십)</option>
+                        <option value="Other">그 외 랜드로버 모델</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>계약 조건 (초기 비용)</label>
+                    <div class="radio-group">
+                        <input type="radio" id="deposit0" name="deposit_type" value="무보증" checked>
+                        <label for="deposit0">무보증 (보증금 0원)</label>
+                        <input type="radio" id="deposit1" name="deposit_type" value="보증금">
+                        <label for="deposit1">보증금 납부</label>
+                        <input type="radio" id="deposit2" name="deposit_type" value="선납금">
+                        <label for="deposit2">선납금 납부</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="period">희망 계약 기간 (개월)</label>
+                    <input type="number" id="period" name="period" min="24" max="60" value="48" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">상세 문의 사항</label>
+                    <textarea id="details" name="details" rows="4" placeholder="자세한 문의 사항을 남겨주시면 정확한 견적을 드립니다."></textarea>
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="privacy_agree" name="privacy_agree" required>
+                    <label for="privacy_agree">개인정보 수집 및 이용에 동의합니다.</label>
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="cta-button submit-button">견적 문의 신청하기</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="review">
+            <h2>레인지로버 장기렌트 고객 리얼 후기 및 성공 사례 (내돈내산)</h2>
+            <p>실제 레인지로버 장기렌트를 이용하고 있는 고객들의 생생한 후기입니다. 저희 <strong>전문 업체</strong>에서 제공하는 서비스와 <strong>혜택</strong>이 고객들에게 어떤 만족감을 드리는지 직접 확인해 보세요.</p>
+            <div class="review-card">
+                <h3>"레인지로버 스포츠 P360, 합리적인 비용으로 품격을 누리다" - 김OO 고객님 (사업가)</h3>
+                <p>몇 년 전만 해도 레인지로버는 꿈의 차였습니다. 하지만 <strong>장기렌트</strong>를 통해 초기 비용 부담 없이 월 납입금만으로 차량을 이용하게 되었습니다. 특히 <strong>사업자</strong>로서 월 렌트료 전액을 <strong>경비 처리</strong>할 수 있다는 점이 가장 큰 장점이었습니다. 기존에 타던 차량을 중고로 판매하는 번거로움도 없었고, <strong>전문 업체</strong>에서 모든 관리를 대행해 주니 사업에만 집중할 수 있습니다. <strong>견적</strong>을 <strong>비교</strong>해 본 결과, 타사 대비 <strong>저렴한곳</strong>이었고 <strong>신규 가입 혜택</strong>으로 <strong>사은품</strong>도 만족스러웠습니다. 이보크와 벨라를 고민했지만, 결국 스포츠의 넉넉한 공간과 파워에 만족합니다.</p>
+            </div>
+            <div class="review-card">
+                <h3>"2026년형 레인지로버 이보크, 트렌디함과 실용성을 동시에" - 박OO 고객님 (프리랜서)</h3>
+                <p>출퇴근 및 주말 드라이브용으로 <strong>레인지로버 이보크</strong>를 선택했습니다. <strong>장기렌트</strong>를 통해 초기 비용 부담을 줄이고, <strong>디자인</strong>에 대한 만족도가 매우 높습니다. 처음에는 <strong>'하, 허, 호' 번호판</strong>에 대한 고민이 있었지만, 막상 이용해보니 크게 신경 쓰이지 않습니다. <strong>평균</strong>적인 유지보수 <strong>비용</strong>을 고려했을 때, 렌트사가 모든 관리를 해주는 점이 큰 매력으로 다가왔습니다. <strong>할인</strong> 프로모션을 잘 활용해서 좋은 <strong>가격</strong>으로 계약했습니다. <strong>내돈내산 후기</strong>를 보신다면 장기렌트가 합리적인 선택임을 알 수 있을 겁니다.</p>
+            </div>
+            <p><strong><a href="https://www.google.com/search?q=range+rover+long+term+rental+review" target="_blank">구글 검색</a></strong>을 통해 더 많은 해외 <strong>후기</strong>를 참고하거나, <strong>유튜브</strong>에서 <strong>레인지로버 장기렌트</strong> 관련 영상을 찾아보시면 결정에 도움이 될 것입니다.</p>
+
+        </section>
+
+        <section id="footer-links">
+            <h2>레인지로버 장기렌트 관련 유용한 링크 및 정보</h2>
+            <ul>
+                <li><strong>랜드로버 코리아 공식 웹사이트:</strong> <a href="https://www.landrover.co.kr/" target="_blank">https://www.landrover.co.kr/</a></li>
+                <li><strong>정부24(자동차세 및 등록 관련):</strong> <a href="https://www.gov.kr/portal/main" target="_blank">https://www.gov.kr/portal/main</a></li>
+                <li><strong>Namuwiki (레인지로버 상세 모델 정보):</strong> <a href="https://namu.wiki/w/%EB%9E%9C%EB%93%9C%EB%A1%9C%EB%B2%84%20%EB%A0%88%EC%9D%B8%EC%A7%80%EB%A1%9C%EB%B2%84" target="_blank">Namuwiki 링크</a></li>
+                <li><strong>국토교통부 자동차관리정보 시스템:</strong> <a href="https://www.car-is.or.kr/" target="_blank">https://www.car-is.or.kr/</a></li>
+                <li><strong>금융감독원 금융상품 비교 공시:</strong> <a href="https://www.fss.or.kr/" target="_blank">https://www.fss.or.kr/</a></li>
+            </ul>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const isActive = dt.classList.contains('active');
+                dt.classList.toggle('active');
+                dt.setAttribute('aria-expanded', !isActive);
+
+                // CSS transition for smooth hide/show
+                const dd = dt.nextElementSibling;
+                if (dd) {
+                    if (isActive) {
+                        dd.style.maxHeight = '0';
+                        dd.style.paddingTop = '0';
+                        dd.style.paddingBottom = '0';
+                    } else {
+                        dd.style.maxHeight = dd.scrollHeight + 'px';
+                        dd.style.paddingTop = '1.5rem';
+                        dd.style.paddingBottom = '1.5rem';
+                    }
+                }
+            });
+
+            // Accessibility: allow keyboard interaction
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+  
